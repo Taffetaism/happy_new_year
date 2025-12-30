@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akemasite</title>
+
+    <meta property="og:title" content="I wish you a HAPPY NEW YEAR to YOU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:description" content="A GSAP gretting card by Taffetaism/Rishoukin" />
+    
+    
     <style>
 
         *
@@ -111,12 +119,17 @@
     </div>
     <script src="./minified/gsap.min.js"></script>
     <script>
-        const svgMajor = gsap.from(".major", {opacity:0, transformOrigin:"100% 50%",scaleX:0 , duration:1.3, stagger:{each:0.3, from:"end"}, ease:"back"})
-        const svgPara = gsap.from(".para", {opacity:0, duration:1.5, x:10, ease:"power1.out", stagger:{each:0.4, from:"end"}})
+        const fadeInContain = gsap.from(".contain",{opacity:0, duration:3, ease:"power2.in"});
+        const fadeInDiv = gsap.from("#j03", {opacity:0.8, duration:1.5,scaleY:0, transformOrigin:"50% 0%", ease:"power3.in"});
+
+        const svgMajor = gsap.from(".major", {opacity:0, transformOrigin:"100% 50%", scaleX:0 , duration:1.5, stagger:{each:1.2, from:"end"}, ease:"back(1)"})
+        const svgPara = gsap.from(".para", {opacity:0, scaleY:0.98, duration:1.5, x:8,transformOrigin:"50% 0%", ease:"power1.out", stagger:{each:0.3, from:"end"}})
 
         const svgTl = gsap.timeline()
-                        .add(svgMajor)
-                        .add(svgPara,"+=0.5");
+                        .add(fadeInContain)
+                        .add(fadeInDiv, "+=1")
+                        .add(svgMajor,"+=1")
+                        .add(svgPara,"+=0.7");
 
 
     </script>
