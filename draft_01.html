@@ -31,7 +31,7 @@
             height:100vh;
 
             display: grid;
-            grid-template-rows: 35vh 29vh 35vh;
+            grid-template-rows: 35vh 30vh 35vh;
 
             background-image:url("./images/w_firework_bg.jpg");
             background-repeat: no-repeat;
@@ -183,7 +183,7 @@
                                 .from("#white-t",{xPercent:-100,ease:"bounce" },"<")
                                 .from("#white-b",{xPercent:-100, ease:"bounce"},"<")
                                 .from("#red-happy",{xPercent:-100,opacity:0,ease:"bounce"},"+=0.5")
-                                .set("#contain-firework",{backgroundImage:'url("./images/w_Taipei.jpg")'})
+                                .set("#contain-firework",{backgroundImage:"none"})
                                 .to("#red-happy",{xPercent:100,opacity:0, ease:"back.in"},"+=1")
                                 .to("#white-t",{xPercent:100, duration:0.6, ease:"back.in"})
                                 .to("#white-b",{xPercent:100, duration:0.4,ease:"back.in"},"-=0.2")
