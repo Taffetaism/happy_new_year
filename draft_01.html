@@ -14,6 +14,8 @@
     
     <style>
 
+
+
         *
         {
             margin: 0;
@@ -26,7 +28,11 @@
 
         /* Firework and World */
 
-        div#contain-firework{
+        #contain-firework{
+
+            position: absolute;
+            top:0;
+            left:0;
             width:100vw;
             height:100vh;
 
@@ -82,6 +88,41 @@
             color:hsl(0,0%,100%,1);
 
             /* opacity: 0; */
+        }
+
+        /* Taipei */
+
+        #contain-taipei{
+            width:100vw;
+            height:100vh;
+
+            display: grid;
+            grid-template-columns: 80vw 20vw;
+
+            /* background-image:url("./images/w_taipei101_bg.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:cover; */
+
+            /* background-color: hsl(0,50%,50%,1); */
+
+            overflow: hidden;
+        }
+
+        #contain-taipei>div:nth-child(1){
+
+            background-image:url("./images/i_taipei101.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:cover;
+
+            overflow: hidden;
+        }
+
+        #contain-taipei>div:nth-child(2){
+            overflow: hidden;
+
+            background-color: salmon;
         }
 
 
@@ -148,6 +189,13 @@
     </style>
 </head>
 <body>
+    <div id="contain-taipei">
+    
+            <div></div>
+            <div></div>
+
+    </div>
+
     <div id="contain-firework">
         <div id="white-t"></div>
         <div id="red-1">
@@ -155,6 +203,8 @@
         </div>
         <div id="white-b"></div>
     </div>
+
+    
 
     <!-- <div class="contain">
         <div></div>
@@ -188,6 +238,7 @@
                                 .to("#white-t",{xPercent:100, duration:0.6, ease:"back.in"})
                                 .to("#white-b",{xPercent:100, duration:0.4,ease:"back.in"},"-=0.2")
                                 .to("#red-1",{xPercent:100,duration:0.55, ease:"back.in"},"<")
+                                .set("#contain-firework", {autoAlpha:0});
                                 
 
 
