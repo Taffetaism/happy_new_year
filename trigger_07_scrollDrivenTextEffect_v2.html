@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Driven Text Effect v2</title>
+    <link rel="stylesheet" href="./scripts/lenis.css">
+    <style>
+        *, ::after,::before{
+            box-sizing:border-box;
+            margin:0;
+            padding:0;
+        }
+
+        img{
+            display: block;
+        }
+
+        /* div.coding-here>h4{
+            color:hsl(0,0%,0%,.1)
+        } */
+
+        /* ------------------------------------------- */
+
+        * {
+            position:relative;
+
+        }
+
+        body{
+            font-size:1rem;
+            background-color:hsla(0,0%,100%,1);
+        }
+
+        .mian{
+            min-width:400px;
+            max-width: 1920px;
+            overflow:visible;
+            margin:auto;
+        }
+
+        .fullScreen{
+            width:100%;
+            height:100vh;
+            background-color:#00bcd4;
+            display:flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            color:white;
+
+        }
+
+        .cols-2{
+            width:100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            margin-bottom: 1em;
+            overflow: hidden;
+        }
+
+        .cols-2 .item{
+            min-width: 250px;
+            min-height: 250px;
+            padding: 1em;
+            margin-right: 1em;
+            flex:1;
+
+            font-size:  1.5rem;
+        }
+
+        .cols-2 .item:last-of-type{
+            margin-right:0
+        }
+
+        .cols-2:nth-of-type(odd){
+            flex-direction: row-reverse;
+        }
+        
+
+        div.paw{
+
+            width:4em;
+            height:4em;
+
+            background-image:url("./images/cat_pawn_02.png");
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .photo{
+            background-size:contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* background-position: 50% 80%; */
+            width:100%;
+            height:100%;
+
+            aspect-ratio: 1/0.55;
+        }
+
+        .grumpy{
+            background-image: url("./images/image_71_grumpy.png");
+        }
+
+        .saint{
+            background-image: url("./images/image_72_calico_icon.png");
+        }
+
+        .pint{
+            background-image: url("./images/image_74.png");
+        }
+
+        .chef{
+            background-image: url("./images/image_76.png");
+        }
+
+        .wizard{
+            background-image: url("./images/image_77.png");
+        }
+
+        .karate{
+            background-image: url("./images/image_80.png");
+        }
+
+        .monk{
+            background-image: url("./images/image_79_monk.png");
+        }
+
+        .detective{
+            background-image: url("./images/image_81.png");
+        }
+
+        @media screen and (max-width: 768px) {
+            
+            .cols-2{
+                flex-direction: column;
+
+                margin-bottom: 1em;
+            }
+
+
+            .cols-2:nth-of-type(odd){
+            flex-direction: column;
+            }
+
+            .cols-2 .item{
+                font-size:1.3rem;
+            }
+
+
+            
+        }
+
+        .word{
+            border: 1px solid red;
+        }
+
+        .word.word2{
+            color:salmon;
+
+            /* weird, font-size can't be changed */
+            /* font-size: larger; */
+
+            text-decoration: underline;
+
+
+            transform:scale(1.5);
+        }
+        
+        .derivedH1Lines{
+            overflow: hidden;
+        }
+
+        .derivedH2Line{
+            overflow:hidden;
+        }
+
+        .splitDerivedLines{
+            overflow:hidden;
+        }
+
+        .wrapBecauseH1{
+            visibility:hidden;
+        }
+
+        .splitBecauseH1Line{
+            overflow:hidden;
+        }
+
+    </style>
+</head>
+<body>
+
+        <div class="main">
+            <div class="fullScreen head">
+                <h1>Calico Portraits Scroll Driven Text Effect v2</h1>
+                <h2>Using gsap.matchMedia</h2>
+                <h3>Scroll Down</h3>
+                <div class="paw"></div>
+
+            </div>
+
+            <div class="cols-2">
+                <div class="item photoHolder">
+                    <div class="photo grumpy"></div>
+                </div>
+                <div class="item">
+                    <div>
+                        <h1 class="toSplitH1 splitCalicoH1">Calico cat</h1>
+                        <p class="toSplit splitCalico">A calico cat is a domestic cat of any breed with a tri-color coat of black, white, and orange. The calico cat is most commonly thought of as being 25% to 75% white with large orange and black patches; however, they may have other colors in their patterns. Calico cats are almost exclusively female except under rare genetic conditions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cols-2">
+                <div class="item photoHolder">
+                    <div class="photo saint"></div>
+                </div>
+                <div class="item">
+                    <div>
+                        <h1 class="toSplitH1 splitConfusedH1">Confused with a tortoiseshell 三毛ネコです <code>autoSplit:true</code></h1>
+                        <p class="toSplit splitConfused">A calico cat is not to be confused with a tortoiseshell, which has a black undercoat and a mostly mottled coat of black/red or blue/cream with relatively few to no white markings. However, outside of North America, the calico pattern is more commonly called tortoiseshell and white.[a][1] Such cats with diluted coloration (blue tortoiseshell and white) have been called calimanco or clouded tiger.[2] Occasionally, the tri-color calico coloration is combined with a tabby patterning, called tortoiseshell tabby with white. A calico-patched tabby cat may be referred to as caliby.[3]</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cols-2">
+                <div class="item photoHolder">
+                    <div class="photo pint"></div>
+                </div>
+                <div class="item">
+                    <div>
+                        <h1 class="toSplitH1 splitDerivedH1">Derived from a colorful printed calico fabric</h1>
+                        <h2 class="toSplitH2 splitDerivedH2">when the term "calico" is applied to cats, it refers only to a color pattern of the fur, not to a cat breed or any reference to any other traits</h2>
+                        <p class="toSplit splitDerived">Derived from a colorful printed calico fabric,[a] when the term "calico" is applied to cats, it refers only to a color pattern of the fur, not to a cat breed or any reference to any other traits, such as their eyes.[5] Formal standards set by professional and show animal breeders limit the breeds among which they permit registration of cats with calico coloration; those breeds are the Manx cat, American Shorthair, Maine Coon, British Shorthair, Persian cat, Arabian Mau, Japanese Bobtail, Exotic Shorthair, Siberian, Turkish Van, Turkish Angora, and the Norwegian Forest cat.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cols-2">
+                <div class="item photoHolder">
+                    <div class="photo chef"></div>
+                </div>
+                <div class="item">
+                    <div>
+                        <div class="wrapBecauseH1">
+                            <h1 class="toSplitH1 splitBecauseH1">Because the genetic determination of coat colors in calico cats is linked to the X chromosome (responsive)</h1>
+                        </div>
+                        <p class="toSplit splitBecause">Because the genetic determination of coat colors in calico cats is linked to the X chromosome, such cats are almost always female,[6] with one color linked to the maternal X chromosome and a second color linked to the paternal X chromosome.[7] The majority of the time, males are only one color as they have only one X chromosome. Male calico cats have an extra X chromosome (XXY, known as Klinefelter syndrome in humans)[8] or are genetic chimeras with two different sets of DNA (XX and XY).[9]</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cols-2">
+                <div class="item photoHolder">
+                    <div class="photo wizard"></div>
+                </div>
+                <div class="item">
+                    <div>
+                        <h1 class="toSplitH1">The tri-color coat characteristic</h1>
+                        <p class="toSplit splitTriColor">The tri-color coat characteristic of calico cats does not define any breed, but occurs incidentally in cats that display a range of color patterns. Accordingly, the effect has no definitive historical background. However, the existence of patches in calico cats was traced to a certain degree by Neil Todd in a study determining the migration of domesticated cats along trade routes in Europe and Northern Africa.[10] The proportion of cats having the orange mutant gene found in calico cats was traced to the port cities along the Mediterranean in Greece, France, Spain, and Italy, originating from Egypt.[11]</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cols-2">
+                <div class="item photoHolder">
+                    <div class="photo karate"></div>
+                </div>
+                <div class="item">
+                    <div>
+                        <h1 class="toSplitH1">Maryland's state cat</h1>
+                        <p class="toSplit splitMaryland">The calico has been Maryland's state cat since 1 October 2001. Calico cats were chosen as the state cat because their white, black, and orange coloring is in harmony with the coloring of the Baltimore oriole (the state bird) and the Baltimore checkerspot butterfly (the state insect).[12]</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cols-2">
+                <div class="item photoHolder">
+                    <div class="photo monk"></div>
+                </div>
+                <div class="item">
+                    <div>
+                        <h1 class="toSplitH1">Etymology</h1>
+                        <p class="toSplit splitEtymology">The fabric called "calico" was originally from the city of Calicut in southwestern India.[13] Printed calico was imported into the United States from Lancashire, England, in the 1780s, and a linguistic separation occurred there. While Europe maintained the word "calico" for the fabric, in the US it was used to refer to the printed design or pattern. These colorful, small-patterned printed fabrics gave rise to the use of the word "calico" to describe a cat coat of tri-color; "calico" as an adjective being synonymous to "mottled" or "resembling printed calico".[14][15]</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cols-2">
+                <div class="item photoHolder">
+                    <div class="photo detective"></div>
+                </div>
+                <div class="item">
+                    <div>
+                        <h1 class="toSplitH1 splitGeneticH1">Genetic</h1>
+                        <p class="toSplit splitGenetic">In genetic terms, calico cats resemble tortoiseshells in most ways, except that the tortoiseshell has a black undercoat and the calico has a white undercoat. One anomaly is that, as a rule of thumb, the larger the areas of white, the fewer and larger the patches of ginger and dark or tabby coat.[16] In contrast, a non-white-spotted tortoiseshell usually has small patches of color or even something resembling a salt-and-pepper sprinkling. This reflects the genetic effects on relative speeds of migration of melanocytes and X-inactivation in the embryo.[17]</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fullScreen foot"></div>
+        </div>
+
+    <script src="./minified/gsap.min.js"></script>
+    <script src="./minified/ScrollTrigger.min.js"></script>
+    <script src="./minified/SplitText.min.js"></script>  
+    <script src="./scripts/lenis.min.js"></script> 
+    <script src="./scripts/d3.v7.js" ></script>
+    <script>
+
+        document.addEventListener('DOMContentLoaded',(event)=>{
+            // Initialize a new Lenis instance for smooth scrolling
+            const lenis = new Lenis();
+
+            // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+            lenis.on('scroll', ScrollTrigger.update);
+
+            // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+            // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+            gsap.ticker.add((time) => {
+            lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+        });
+
+        // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+        gsap.ticker.lagSmoothing(0);
+
+
+        // --------------------  from GSAP Docs TextSplitter
+
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(SplitText);
+
+        gsap.to(".paw",{y:50,duration:1,ease:"power1.in", yoyo:true, repeat:-1});
+
+        // wordClass:className and wordclass:className++ will generate a class named className,
+        //  "++" will generate one more class name with increasing number like className1, className2...
+        let calicoH1 = SplitText.create(".splitCalicoH1", {type:"words", wordsClass:"word++",propIndex:true});
+
+        // gsap.from(calicoH1.words, {y:100, duration:1, autoAlpha:0, stagger:0.2, ease:"back.out(1.5)"});
+
+        let calicoText = SplitText.create(".splitCalico", {type:"lines",});
+
+        // gsap.from(calicoText.lines, {yPercent:100, duration:0.3, opacity:0, stagger:0.1, ease:"back.out(1.5)"}) ;
+
+        let calicoTl = gsap.timeline();
+
+        calicoTl
+        .from(calicoH1.words, {yPercent:80, duration:1, opacity:0, stagger:0.2, ease:"back.out(1.8)",repeat:-1,repeatDelay:1, yoyo:true,})
+        .from(calicoText.lines, {yPercent:100, duration:0.8, opacity:0, stagger:0.1, ease:"back.out(1)",repeat:-1,repeatDelay:1.3, yoyo:true,}, "<0.5");
+
+        let confusedH1 = SplitText.create(".splitConfusedH1",{type:"chars",charsClass:"confusedChars"});
+
+        let confusedText = SplitText.create(
+            ".splitConfused",
+            {
+                type:"lines", 
+                linesClass:"confusedLine",
+                autoSplit:true,
+                onSplit:(self)=>{
+                    return gsap.from(self.lines,{
+                        yPercent:"random([-50,50])",
+                        opacity:0,
+                        yoyo:true,
+                        repeat:-1,
+                        repeatDelay:1.7,
+                        ease:"power1.in(2)",
+                        stagger:{
+                            amount:1,
+                        }
+                    })
+                }
+
+            
+        })
+
+        let confusedTl = gsap.timeline();
+
+        // yPercent:"random([-100,100])"
+        //  rotation:"random(-30,30)"
+        // linesClass:className,
+        // wordsClass:....
+        // charsClass:...
+        // smartWrap:true
+
+        // autoSplit:true !!!!!!! for responsive web design
+
+        confusedTl
+        .from(confusedH1.chars,{yPercent:100, repeat:-1, repeatDelay:1,opacity:0, yoyo:true, ease:"back.out(1.5)",stagger:{amount:0.5, from:"random"}})
+    
+
+        // document.fonts.ready.then(()=>{
+        // 
+        //      put TextSplit code here....
+        //      
+        //      one more useful stuff:
+        //          
+        //          onSplit:(self)=>{
+        //                  gsap.from(self.words, {.....})
+        //              }
+        //  })
+
+
+
+        // ---------------------------------------------- code from Carl's tutorial
+
+        const splitDerivedH1 = new SplitText(".splitDerivedH1", {type:"lines, chars", linesClass:"derivedH1Lines"});
+        const derivedH1Tl = gsap.timeline({default:{repeatRefresh:true}});
+        // repeatRefresh seems not working 
+
+        function derivedH1Init(){
+            // must do it in every real-world projects:
+            //      set visiblity:none in css
+            //      then make it visible here by using
+            //
+            //          gsap.set(".wrapperDivName",{autoAlpha:1})
+
+            derivedH1Tl.from(splitDerivedH1.chars,{yPercent:100, rotation:"random(-50,50)", opacity:0,ease:"back.out",stagger:{amount:0.2, from:"random"}, repeat:-1, yoyo:true, repeatDelay:1.2});
+
+        }
+
+        const splitDerivedH2 = new SplitText(".splitDerivedH2",{type:"lines", linesClass:"derivedH2Line"});
+        const derivedH2Tl = gsap.timeline({paused:true});
+        
+        // not Carl's original version
+        function derivedH2Go(){
+            // gsap.set(".wrapperDivName",{autoAlpha:1});
+
+            splitDerivedH2.lines.forEach((line, index)=>{
+                let charsH2 = new SplitText(line, {type:"chars"});
+                // derivedH2Tl.from(charsH2.chars,{xPercent:100,opacity:0, stagger:0.03, repeat:-1,repeatDelay:3, yoyo:true, ease:"back.out(0.75)"});
+                let tweenH2 = gsap.from(charsH2.chars,{xPercent:100,opacity:0, stagger:0.01, ease:"back.out(0.75)"});
+                derivedH2Tl.add(tweenH2,"-=0.05");
+                // must check GSAP docs timeline.add()
+            });
+            
+            derivedH2Tl.play();
+        }
+
+        // stick to Carl's original version
+        // because we forEach() line array to get chars,
+        // we can use the line array without "type:lines"
+        // it is a default setting
+        const splitDerived = new SplitText(".splitDerived", {charsClass:"splitDerivedChars", linesClass:"splitDerivedLines"});
+
+        const splitDerivedTl = gsap.timeline();
+
+        function splitDerivedGo (){
+            // gsap.set(".wrapperClassName",{autoAlpha:1})
+
+            // some properties changed
+            splitDerived.lines.forEach((line, index)=>{
+                splitDerivedTl.from(line.querySelectorAll(".splitDerivedChars"),{duration:0.2, yPercent:100, stagger:{amount:0.75},ease:"back.out(0.3)"}, ">-15%")
+            })
+
+        }
+
+        // ------------------------------------------ Responsive TextSplitting
+
+        let splitBecauseH1 
+        let splitBecauseH1Tl
+
+        function splitBecauseH1Go(){
+            gsap.set(".wrapBecauseH1", {autoAlpha:1});
+            
+            if(splitBecauseH1){
+                splitBecauseH1.revert();
+            }
+
+            splitBecauseH1 = new SplitText(".splitBecauseH1", {linesClass:"splitBecauseH1Line", charsClass:"splitBecauseH1Char"});
+
+            splitBecauseH1Tl = gsap.timeline();
+
+            splitBecauseH1.lines.forEach((line, index)=>{
+                // console.log(line);
+                splitBecauseH1Tl.from(line.querySelectorAll(".splitBecauseH1Char"),{duration:0.3, yPercent:100,stagger:0.04},">-50%");
+            })
+
+        }
+
+        let timeoutBecause // holder for timeout id
+        let delay = 250 // delay after event is "complete" to run callback
+
+        // debounce, check Carl's tutorial
+
+        window.addEventListener("resize", function(){
+            gsap.set(".wrapBecauseH1", {autoAlpha:0})
+
+            clearTimeout(timeoutBecause);
+
+            timeoutBecause = setTimeout(splitBecauseH1Go, delay);
+        })
+
+
+
+        window.addEventListener("load",()=>{
+            derivedH1Init();
+            derivedH2Go();
+            splitDerivedGo();
+
+
+            // responsive TextSplitting
+            splitBecauseH1Go()
+
+        })
+
+
+        // ---------------------------------------------- code of v1
+        // let splitLines
+        // let splitLinesTrigger
+
+        // function init(){
+        //     splitLines = new SplitText(".toSplit",{type:"lines", linesClass:"line"});
+            
+
+        //     splitLinesTrigger = new SplitText(".toSplit",{type:"lines", linesClass:"lineTrigger"});
+
+        //     splitLines.lines.forEach((line,index)=>{
+        //         ScrollTrigger.create({
+        //             trigger:splitLinesTrigger.lines[index],
+        //             start:"top 90%",
+        //             animation:gsap.from(line, {duration:1, yPercent:100, opacity:0}),
+        //             toggleActions:"restart none none reverse",
+
+        //         })
+        //     })
+        // }
+
+        
+
+        let mm = gsap.matchMedia();
+
+        mm.add("(min-width: 769px)", ()=>{
+
+                // const sections = gsap.utils.toArray(".cols-2");
+
+
+                // sections.forEach((element, index) => {
+                //     let items = element.querySelectorAll(".item");
+
+
+                //     let distance = (index%2 == 0) ? 100 : -100;
+
+                //     let tl = gsap.timeline({paused:true})
+
+                    
+                //     items.forEach((element, index)=>{
+                //         if(element.classList.contains("photoHolder")){
+                //             tl.from(items,{duration:0.5, xPercent:gsap.utils.wrap([-distance,distance])});
+                //             tl.from(items,{opacity:0,duration:0.3},0);
+                //         }
+                //         else{
+                //             init();
+                //         }
+                //     })
+
+
+                //     ScrollTrigger.create({
+                //         trigger:element,
+                //         start:"top 60%",
+                //         // markers:true,
+                //         onEnter:()=>{
+                //             // console.log("onEntered");
+                //             return tl.play();
+                //         }
+                //     })
+
+                //     ScrollTrigger.create({
+                //         trigger:element,
+                //         start:"top 100%",
+                //         // markers:true,
+                //         onLeaveBack:()=>{
+                //             // console.log("onEntered");
+                //             return tl.pause(0);
+                //         }
+                //     })
+
+                // });
+
+            });
+        
+        mm.add("(max-width: 768px)",()=>{
+            
+            // gsap.utils.toArray(".item").forEach((element, index)=>{
+
+            //     let target = element.querySelector("div");
+
+            //     let tl = gsap.timeline({paused:true});
+
+            //     if(target.classList.contains("photo")){
+            //         tl.from(target,{duration:0.5, opacity:0, scale:0.8, ease:"back.out(0.8)"});
+            //     }
+            //     else{
+            //         init();
+            //     }
+
+            //     ScrollTrigger.create({
+            //         trigger:element,
+            //         start:"top 80%",
+            //         onEnter:()=> tl.play()
+            //     })
+
+            //     ScrollTrigger.create({
+            //         trigger:element,
+            //         start:"top 100%",
+            //         onLeaveBack:()=> tl.pause(0)
+            //     })
+
+            // })
+
+
+        });
+
+
+
+        })
+
+    
+
+    </script>
+
+
+</body>
+</html>
