@@ -67,11 +67,11 @@
 
         #text-happy{
             display:grid;
-            grid-template-rows:25vh 50vh 25vh;
+            grid-template-rows:13vh 13vh 13vh 61vh;
         }
 
         #text-happy>div:nth-child(1){
-            transform:translateX(-18vw) translateY(2vh) rotate(-30deg) scale(1.2);
+            transform:translateY(vh) translateX(-14vw)  rotate(-45deg) scale(1.2);
             
             opacity: 0.6;
             background-image:url("./images/firework01_png_01.png");
@@ -80,13 +80,10 @@
             background-size:contain;
         }
 
+        
         #text-happy>div:nth-child(2){
-            writing-mode: vertical-lr;
-        }
 
-        #text-happy>div:nth-child(3){
-
-            transform:translateY(-18vh) scale(1.6) rotate(14deg);
+            transform:translateY(-5vh) translateX(-55vw) scale(2) rotate(20deg);
             opacity: 0.6;
             background-image:url("./images/firework01_png_01.png");
             background-repeat: no-repeat;
@@ -94,8 +91,25 @@
             background-size:contain;
         }
 
+        #text-happy>div:nth-child(3){
+
+            transform:translateY(-7vh) translateX(-9vw) scale(2.2) rotate(-10deg);
+            opacity: 0.6;
+            background-image:url("./images/firework01_png_01.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:contain;
+        }
+
+        #text-happy>div:nth-child(4){
+            writing-mode: vertical-lr;
+        }
+
+
         #year-horse{
             font-size: 2em;
+            color:rgb(255, 188, 3);
+            text-shadow: .5px .5px 0 hsla(65,50%,40%,0.8);
         }
 
 
@@ -234,10 +248,11 @@
             <div></div>
             <div id="text-happy">
                 <div></div>
-                <div>
-                    <h2 id="year-horse">新年快樂，馬到成功</h2>
-                </div>
                 <div></div>
+                <div></div>
+                <div>
+                    <h2 id="year-horse">新年快樂 馬到成功</h2>
+                </div>
             </div>
     </div>
 
@@ -286,6 +301,9 @@
                                 .to("#white-b",{xPercent:100, duration:0.4,ease:"back.in"},"-=0.2")
                                 .to("#red-1",{xPercent:100,duration:0.55, ease:"back.in"},"<")
                                 .set("#contain-firework", {autoAlpha:0})
+                                .from(" #text-happy>div:nth-child(2)",{opacity:0, scale:1.35, duration:2,transformOrigin:"50% 50%"},"+=0.2")
+                                .from(" #text-happy>div:nth-child(1)",{opacity:0, scale:1, duration:2,transformOrigin:"50% 50%"},"+=0.2")
+                                .from(" #text-happy>div:nth-child(3)",{opacity:0, scale:1.9, duration:2,transformOrigin:"50% 50%"},"+=0.3")
 
                                 
 
