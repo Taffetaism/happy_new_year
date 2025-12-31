@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年快樂</title>
+
+    <meta property="og:title" content="I wish you a HAPPY NEW YEAR to YOU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://taffetaism.github.io/happy_new_year/images/taipei101_og.jpg" />
+    <meta property="og:url" content="https://taffetaism.github.io/happy_new_year/" />
+    <meta property="og:description" content="A GSAP greeting card from Taffetaism/Rishoukin" />
+    
+    
+    <style>
+
+
+
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+
+        svg,img {
+            display: block;
+        }
+
+        body{
+            background-color:hsl(266, 91%, 21%);
+        }
+
+                /* Taipei */
+
+        #contain-taipei{
+            width:100vw;
+            height:100vh;
+
+            display: grid;
+            grid-template-columns: 33vw 34vw 33vw;
+
+            background-image:url("./images/taipei101_bg.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:cover;
+
+            background-color: hsl(0,0%,100%,1);
+
+            opacity:0;
+            visibility: hidden;
+
+            overflow: hidden;
+        }
+
+
+        #text-happy{
+            display:grid;
+            grid-template-rows:13vh 13vh 13vh 61vh;
+        }
+
+        #text-happy>div:nth-child(1){
+            transform:translateY(vh) translateX(-14vw)  rotate(-45deg) scale(1.2);
+            
+            opacity: 0.6;
+            background-image:url("./images/firework01_png_01.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:contain;
+        }
+
+        
+        #text-happy>div:nth-child(2){
+
+            transform:translateY(-5vh) translateX(-55vw) scale(2) rotate(20deg);
+            opacity: 0.6;
+            background-image:url("./images/firework01_png_01.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:contain;
+        }
+
+        #text-happy>div:nth-child(3){
+
+            transform:translateY(-7vh) translateX(-9vw) scale(2.2) rotate(-10deg);
+            opacity: 0.6;
+            background-image:url("./images/firework01_png_01.png");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:contain;
+        }
+
+        #text-happy>div:nth-child(4){
+            writing-mode: vertical-lr;
+        }
+
+
+        #year-horse{
+            font-size: 2em;
+            color:rgb(255, 188, 3);
+            text-shadow: .5px .5px 0 hsla(65,50%,40%,0.8);
+        }
+
+
+        /* Firework and World */
+
+        #contain-firework{
+
+            position: absolute;
+            top:0;
+            left:0;
+            width:100vw;
+            height:100vh;
+
+            display: grid;
+            grid-template-rows: 35vh 30vh 35vh;
+
+            background-image:url("./images/w_firework_bg.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:cover;
+
+            background-color: transparent;
+
+            overflow: hidden;
+        }
+
+        #white-t, #white-b {
+
+            width:100%;
+            height:35vh;
+            background-color: hsl(0,0%,100%,1);
+
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size:contain;
+        }
+
+        #white-t{
+            background-image:url("./images/i_london.jpg");    
+        }
+
+        #white-b{
+            background-image:url("./images/i_rio.jpg");
+
+        }
+
+        #red-1 {
+            width:100%;
+            background-color: hsl(0, 97%, 53%);
+
+            display: grid;
+
+            justify-content: center;
+            align-items: center;
+        }
+
+        #red-happy{
+            font-size: 2rem;
+            color:hsl(0,0%,100%,1);
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div id="contain-taipei">
+    
+            <div></div>
+            <div></div>
+            <div id="text-happy">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div>
+                    <h2 id="year-horse">新年快樂 馬到成功</h2>
+                </div>
+            </div>
+    </div>
+
+    <div id="contain-firework">
+        <div id="white-t"></div>
+        <div id="red-1">
+            <h2 id="red-happy">HAPPY NEW YEAR</h2>
+        </div>
+        <div id="white-b"></div>
+    </div>
+
+    <script src="./minified/gsap.min.js"></script>
+    <!-- <script src="./minified/SplitText.min.js"></script>   -->
+    <script>
+
+
+        const taipei_world = gsap.timeline()
+                                .from("#contain-firework",{scale:0.95,opacity:0,duration:2,ease:"power1.out"})
+                                .from("#red-1",{xPercent:100,duration:1.2,ease:"bounce"})
+                                .from("#white-t",{xPercent:-100,duration:1.2,ease:"bounce" },"<")
+                                .from("#white-b",{xPercent:-100, duration:1.2,ease:"bounce"},"<")
+                                .from("#red-happy",{xPercent:-100,opacity:0,duration:.75,ease:"power3.out"},"+=0.5")
+                                .set("#contain-firework",{backgroundImage:"none"})
+                                .set("#contain-taipei",{autoAlpha:1})
+                                .to("#red-happy",{xPercent:100,opacity:0, duration:.75,ease:"back.in"},"+=1")
+                                .to("#white-t",{xPercent:100, duration:0.6, ease:"back.in"})
+                                .to("#white-b",{xPercent:100, duration:0.4,ease:"back.in"},"-=0.2")
+                                .to("#red-1",{xPercent:100,duration:0.55, ease:"back.in"},"<")
+                                .set("#contain-firework", {autoAlpha:0})
+                                .from(" #text-happy>div:nth-child(2)",{opacity:0, scale:1.35, duration:2,transformOrigin:"50% 50%"},"+=0.2")
+                                .from(" #text-happy>div:nth-child(1)",{opacity:0, scale:1, duration:2,transformOrigin:"50% 50%"},"+=0.2")
+                                .from(" #text-happy>div:nth-child(3)",{opacity:0, scale:1.9, duration:2,transformOrigin:"50% 50%"},"+=0.3")
+
+    </script>
+</body>
+</html>
