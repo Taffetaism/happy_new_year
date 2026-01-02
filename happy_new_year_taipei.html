@@ -122,6 +122,8 @@
             background-color: transparent;
 
             overflow: hidden;
+
+            visibility: hidden;
         }
 
         #white-t, #white-b {
@@ -211,8 +213,11 @@
     <!-- <script src="./minified/SplitText.min.js"></script>   -->
     <script>
 
+        document.addEventListener("load", init_GSAP());
 
-        const taipei_world = gsap.timeline()
+        function init_GSAP (){
+            const taipei_world = gsap.timeline()
+                                .set("#contain-firework",{autoAlpha:1})
                                 .from("#contain-firework",{scale:0.93,opacity:0,transformOrigin:("50% 0%"),duration:2,ease:"power1.out"})
                                 .from("#red-1",{xPercent:100,duration:1.2,ease:"bounce"})
                                 .from("#white-t",{xPercent:-100,duration:1.2,ease:"bounce" },"<")
@@ -229,6 +234,10 @@
                                 .from(" #text-happy>div:nth-child(1)",{opacity:0, scale:1, duration:1.2,transformOrigin:"50% 50%"},"+=0.2")
                                 .from(" #text-happy>div:nth-child(3)",{opacity:0, scale:1, duration:2,transformOrigin:"50% 50%"},"+=0.2")
 
+                                
+
+        }
+        
     </script>
 </body>
 </html>

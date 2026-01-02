@@ -36,6 +36,8 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
+
+            visibility: hidden;
         }
 
         #j03{
@@ -100,17 +102,26 @@
     </div>
     <script src="./minified/gsap.min.js"></script>
     <script>
-        const fadeInContain = gsap.from(".contain",{opacity:0, duration:3, ease:"power2.in"});
-        const fadeInDiv = gsap.from("#j03", {opacity:0.8, duration:1.5,scaleY:0, transformOrigin:"50% 0%", ease:"power3.in"});
 
-        const svgMajor = gsap.from(".major", {opacity:0, transformOrigin:"100% 50%", scaleX:0 , duration:1.5, stagger:{each:1.2, from:"end"}, ease:"back(1)"})
-        const svgPara = gsap.from(".para", {opacity:0, scaleY:0.98, duration:1.5, x:8,transformOrigin:"50% 0%", ease:"power1.out", stagger:{each:0.3, from:"end"}})
+        document.addEventListener("load", init_GSAP());
 
-        const svgTl = gsap.timeline()
-                        .add(fadeInContain)
-                        .add(fadeInDiv, "+=1")
-                        .add(svgMajor,"+=1")
-                        .add(svgPara,"+=0.7");
+
+        
+        function init_GSAP(){
+            const fadeInContain = gsap.from(".contain",{opacity:0, duration:3, ease:"power2.in"});
+            const fadeInDiv = gsap.from("#j03", {opacity:0.8, duration:1.5,scaleY:0, transformOrigin:"50% 0%", ease:"power3.in"});
+
+            const svgMajor = gsap.from(".major", {opacity:0, transformOrigin:"100% 50%", scaleX:0 , duration:1.5, stagger:{each:1.2, from:"end"}, ease:"back(1)"})
+            const svgPara = gsap.from(".para", {opacity:0, scaleY:0.98, duration:1.5, x:8,transformOrigin:"50% 0%", ease:"power1.out", stagger:{each:0.3, from:"end"}})
+
+            const svgTl = gsap.timeline()
+                            .set(".contain", {autoAlpha:1})
+                            .add(fadeInContain)
+                            .add(fadeInDiv, "+=1")
+                            .add(svgMajor,"+=1")
+                            .add(svgPara,"+=0.7");
+        }
+        
 
 
     </script>
