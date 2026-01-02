@@ -159,6 +159,28 @@
             color:hsl(0,0%,100%,1);
         }
 
+
+            .serif {
+                font-family: 
+                    ui-serif,             /* Modern standard */
+                    Georgia,              /* Excellent web-safe serif for Windows/Mac */
+                    "Times New Roman",    /* Universal fallback */
+                    Times, 
+                    serif;                /* Generic fallback */
+            }
+
+
+
+            .zh-hant-serif {
+                font-family: 
+                    "Georgia", "Times New Roman",     /* English fallbacks first */
+                    "Songti TC", "新宋體",             /* Mac/iOS Modern */
+                    "PMingLiU", "新細明體",            /* Windows Standard (Taiwan) */
+                    "MingLiU", "細明體",               /* Windows Standard (Hong Kong) */
+                    serif;
+                }
+
+
         
     </style>
 </head>
@@ -172,7 +194,7 @@
                 <div></div>
                 <div></div>
                 <div>
-                    <h2 id="year-horse">新年快樂 馬到成功</h2>
+                    <h2 id="year-horse" class="zh-hant-serif">新年快樂 馬到成功</h2>
                 </div>
             </div>
     </div>
@@ -180,7 +202,7 @@
     <div id="contain-firework">
         <div id="white-t"></div>
         <div id="red-1">
-            <h2 id="red-happy">HAPPY NEW YEAR</h2>
+            <h2 id="red-happy" class="serif">HAPPY NEW YEAR</h2>
         </div>
         <div id="white-b"></div>
     </div>
