@@ -182,7 +182,6 @@
                     serif;
                 }
 
-
         
     </style>
 </head>
@@ -222,6 +221,8 @@
                     }
             )
 
+    
+
         function init_GSAP (){
             const taipei_world = gsap.timeline()
                                 .set("#contain-firework",{autoAlpha:1})
@@ -237,7 +238,7 @@
                                 .to("#white-b",{xPercent:100, duration:0.4,ease:"back.in"},"-=0.2")
                                 .to("#red-1",{xPercent:100,duration:0.55, ease:"back.in"},"<")
                                 .set("#contain-firework", {autoAlpha:0})
-                                .from(year_horse.chars,{yPercent:"random([200,300])", rotation:"random(-50,50)", autoAlpha:0, ease:"back",stagger:{ amount:0.5,from:"end"} })
+                                .from(year_horse.chars,{yPercent:"random([200,300])", rotation:"random(-50,50)", scale:0.1, autoAlpha:0, ease:"back",stagger:{ amount:0.3,from:"end"} })
                                 .from(" #text-happy>div:nth-child(2)",{opacity:0, scale:1.35, duration:1.5,transformOrigin:"50% 50%"},"+=0.2")
                                 .from(" #text-happy>div:nth-child(1)",{opacity:0, scale:1, duration:1.2,transformOrigin:"50% 50%"},"+=0.2")
                                 .from(" #text-happy>div:nth-child(3)",{opacity:0, scale:1, duration:2,transformOrigin:"50% 50%"},"+=0.2")
